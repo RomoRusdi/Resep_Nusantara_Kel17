@@ -3,7 +3,7 @@ import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import SplashScreen from './pages/SplashScreen';
 import HomePage from './pages/HomePage';
-import MakananPage from './pages/makananPage';
+import MakananPage from './pages/MakananPage';
 import MinumanPage from './pages/MinumanPage';
 import ProfilePage from './pages/ProfilePage';
 import DesktopNavbar from
