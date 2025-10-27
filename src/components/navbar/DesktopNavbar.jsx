@@ -1,28 +1,31 @@
 // src/components/DesktopNavbar.jsx
+import { Link, useLocation } from 'react-router-dom';
 import logoUrl from '../../assets/LOGORN.png';
 
-export default function DesktopNavbar({ currentPage, onNavigate }) {
+export default function DesktopNavbar() {
+  const location = useLocation();
+  const currentPath = location.pathname;
+
   const navItems = [
-    { id: 'home', label: 'Beranda' },
-    { id: 'makanan', label: 'Makanan' },
-    { id: 'minuman', label: 'Minuman' },
-    { id: 'profile', label: 'Profile' }
+    { id: 'home', label: 'Beranda', path: '/' },
+    { id: 'makanan', label: 'Makanan', path: '/makanan' },
+    { id: 'minuman', label: 'Minuman', path: '/minuman' },
+    { id: 'profile', label: 'Profile', path: '/profile' },
   ];
 
   return (
     <nav className="hidden md:block shadow-lg border-b border-blue-100 sticky top-0 z-50 backdrop-blur-sm bg-white/95">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          
+
           {/* Logo */}
-          <div className="flex items-center space-x-4">
-            <div className="relative group">
+          <Link to="/" className="flex items-center space-x-4 group">
+            <div className="relative">
               <img
                 src={logoUrl}
                 alt="Resep Nusantara Logo"
                 className="w-12 h-12 object-contain filter drop-shadow-md transform transition-transform duration-300 group-hover:scale-110"
               />
-              {/* Decorative particles */}
               <div className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-blue-400 rounded-full animate-ping opacity-60" />
               <div className="absolute -bottom-0.5 -left-0.5 w-1 h-1 bg-blue-300 rounded-full animate-ping opacity-50" style={{ animationDelay: '300ms' }} />
             </div>
@@ -34,25 +37,24 @@ export default function DesktopNavbar({ currentPage, onNavigate }) {
                 Nusantara
               </h2>
             </div>
-          </div>
+          </Link>
 
           {/* Navigation Links */}
           <div className="flex items-center space-x-10">
             {navItems.map((item) => (
-              <button
+              <Link
                 key={item.id}
-                onClick={() => onNavigate(item.id)}
+                to={item.path}
                 className={`px-4 py-3 text-base font-medium transition-all duration-200 border-b-2 ${
-                  currentPage === item.id
+                  currentPath === item.path
                     ? 'text-blue-600 border-blue-500'
                     : 'text-slate-600 border-transparent hover:text-blue-500 hover:border-blue-300'
                 }`}
               >
                 {item.label}
-              </button>
+              </Link>
             ))}
           </div>
-         
         </div>
       </div>
     </nav>
